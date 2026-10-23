@@ -1,0 +1,230 @@
+---
+// Boda: 9 de Abril de 2027 a las 18:00
+// NOTA: Los meses van de 0 a 11 (Abril = 3)
+const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
+---
+
+<section class="countdown-section">
+  <div class="countdown-card">
+    <div class="decorative-icon">✦</div>
+    <h2>CUENTA ATRÁS</h2>
+    <p class="subtitle">Nos vemos en...</p>
+
+    <div class="timer">
+      <!-- Bloque Principal: Meses -->
+      <div class="time-block main-block">
+        <span id="months">00</span>
+        <p>Meses</p>
+      </div>
+
+      <!-- Bloques Secundarios -->
+      <div class="secondary-timer">
+        <div class="time-block">
+          <span id="days">00</span>
+          <p>Días</p>
+        </div>
+        <div class="time-block">
+          <span id="hours">00</span>
+          <p>Horas</p>
+        </div>
+        <div class="time-block">
+          <span id="minutes">00</span>
+          <p>Minutos</p>
+        </div>
+        <div class="time-block">
+          <span id="seconds">00</span>
+          <p>Segundos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script data-fecha={fechaBoda}>
+  const targetDate = Number(document.currentScript.dataset.fecha);
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference <= 0) {
+      document.querySelector(".timer").innerHTML =
+        "<h3 class='wedding-day'>¡Hoy es el gran día!</h3>";
+      return;
+    }
+
+    const MS_PER_SECOND = 1000;
+    const MS_PER_MINUTE = MS_PER_SECOND * 60;
+    const MS_PER_HOUR = MS_PER_MINUTE * 60;
+    const MS_PER_DAY = MS_PER_HOUR * 24;
+    const MS_PER_MONTH = MS_PER_DAY * 30.44;
+
+    const months = Math.floor(difference / MS_PER_MONTH);
+    const days = Math.floor((difference % MS_PER_MONTH) / MS_PER_DAY);
+    const hours = Math.floor((difference % MS_PER_DAY) / MS_PER_HOUR);
+    const minutes = Math.floor((difference % MS_PER_HOUR) / MS_PER_MINUTE);
+    const seconds = Math.floor((difference % MS_PER_MINUTE) / MS_PER_SECOND);
+
+    document.getElementById("months").textContent = String(months).padStart(
+      2,
+      "0",
+    );
+    document.getElementById("days").textContent = String(days).padStart(2, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(
+      2,
+      "0",
+    );
+    document.getElementById("minutes").textContent = String(minutes).padStart(
+      2,
+      "0",
+    );
+    document.getElementById("seconds").textContent = String(seconds).padStart(
+      2,
+      "0",
+    );
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+<style>
+  /* Importamos una tipografía elegante estilo serif */
+  @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap");
+
+  .countdown-section {
+    background-color: #fdfcf8;
+    padding: 4rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .countdown-card {
+    background: #ffffff;
+    border: 1px solid #e8dfd8;
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    max-width: 550px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    position: relative;
+  }
+
+  .decorative-icon {
+    color: #c5a059;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    color: #2c2c2c;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8c857b;
+    margin-top: 0.3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* Estilos para el bloque destacado de Meses */
+  .main-block {
+    background: #fdfbf7;
+    border: 2px solid #d4af37;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.12);
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .main-block:hover {
+    transform: translateY(-3px);
+  }
+
+  .main-block span {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    line-height: 0.9;
+  }
+
+  .main-block p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #8c857b;
+    margin-top: 0.4rem;
+    font-weight: 500;
+  }
+
+  /* Grid secundario para Días, Horas, Minutos y Segundos */
+  .secondary-timer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    width: 100%;
+    border-top: 1px solid #f0eae1;
+    padding-top: 2rem;
+  }
+
+  .secondary-timer .time-block span {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    display: block;
+    line-height: 1;
+  }
+
+  .secondary-timer .time-block p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #9e978e;
+    margin-top: 0.5rem;
+  }
+
+  /* Ajustes Responsive para móviles pequeños */
+  @media (max-width: 480px) {
+    .countdown-card {
+      padding: 2rem 1rem;
+    }
+
+    .secondary-timer {
+      gap: 0.5rem;
+    }
+
+    .secondary-timer .time-block span {
+      font-size: 1.6rem;
+    }
+
+    .secondary-timer .time-block p {
+      font-size: 0.65rem;
+      letter-spacing: 0.5px;
+    }
+  }
+</style>

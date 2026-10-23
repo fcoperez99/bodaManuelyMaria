@@ -1,0 +1,155 @@
+---
+import { Image } from "astro:assets";
+// Si guardaste tu foto en public/, la referenciamos con /
+const fotoBoda = "/foto-principal.jpg";
+const novio = "Manuel";
+const novia = "María";
+const fechaCorta = "09 • 04 • 27";
+---
+
+<section class="hero-container">
+  <div class="postal-frame">
+    <!-- LA FOTO REAL -->
+    <div class="foto-wrapper">
+      <img
+        src={fotoBoda}
+        alt={`Foto de ${novio} y ${novia}`}
+        class="foto-real"
+      />
+
+      <!-- Opcional: Un pequeño borde/brillo interno para efecto papel -->
+      <div class="inner-shadow"></div>
+    </div>
+
+    <!-- EL TEXTO DE LA POSTAL (Abajo) -->
+    <div class="postal-text">
+      <p class="cita">¡Nos Casamos!</p>
+      <h1 class="nombres">{novio} <span class="amp">&</span> {novia}</h1>
+      <p class="fecha">{fechaCorta}</p>
+    </div>
+
+    <!-- Detalle decorativo: Un "sello" o pin (opcional) -->
+    <div class="sello-postal"></div>
+  </div>
+</section>
+
+<style>
+  /* Contenedor principal: define el fondo detrás de la postal */
+  .hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0rem;
+    width: 100%;
+    /* Fondo con textura opcional (ej: papel texturizado) */
+    /* background-image: url('/fondo-invitacion.jpg'); */
+    background-color: #fdfcf8; /* Crema muy suave si no hay textura */
+  }
+
+  /* El "marco" o cuerpo de la postal */
+  .postal-frame {
+    background-color: white;
+    padding: 15px; /* Margen blanco alrededor de la foto */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra para dar relieve */
+    border-radius: 2px; /* Esquinas casi rectas */
+    width: 72%;
+    max-width: 500px; /* Tamaño máximo de la foto en PC */
+    position: relative;
+    /* Un ligero giro para que parezca apoyada naturalmente */
+    transform: rotate(-1deg);
+  }
+
+  /* Contenedor de la imagen para asegurar proporciones */
+  .foto-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Proporción de la foto (vertical tipo postal) */
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #eee; /* Un borde sutilísimo */
+  }
+
+  /* La foto real */
+  .foto-real {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la foto llene el espacio sin deformarse */
+    display: block;
+  }
+
+  /* Efecto sutil de sombra interna para que parezca papel */
+  .inner-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+  }
+
+  /* Sección de texto debajo de la foto */
+  .postal-text {
+    text-align: center;
+    padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+    color: #444;
+  }
+
+  .cita {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+  }
+
+  .nombres {
+    font-size: 2.2rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    /* Usa una fuente elegante aquí en tu global.css (ej: Playfair Display) */
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .amp {
+    font-family: serif; /* O una fuente cursiva para la '&' */
+    color: #888;
+    font-style: italic;
+  }
+
+  .fecha {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+
+  /* Decoración: Un "sello" o pin opcional */
+  .sello-postal {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #d1bfa7; /* Color dorado suave/lino */
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    /* Puedes poner un icono o iniciales aquí */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .sello-postal::after {
+    content: "M&M"; /* Tus iniciales */
+    font-size: 0.8rem;
+  }
+
+  /* Ajustes para móviles */
+  @media (max-width: 600px) {
+    .nombres {
+      font-size: 1.8rem;
+    }
+  }
+</style>

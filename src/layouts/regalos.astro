@@ -1,0 +1,136 @@
+---
+const iban = "ES21 1234 5678 9012 3456 7890";
+const iconoCarta = "/tarjeta-de-regalo1.png"; // Reemplaza con tu IBAN real
+---
+
+<section class="gift-section">
+  <div class="gift-card">
+    <!-- 
+    <div class="icon">🎁</div>
+    -->
+    <img src={iconoCarta} alt="Regalo" class="icon" />
+    <h2>El Mejor Regalo</h2>
+    <p class="description">
+      Vuestra presencia es el mejor regalo que podemos recibir. Pero si deseáis
+      tener un detalle con nosotros, aquí os dejamos nuestros datos bancarios:
+    </p>
+
+    <div class="iban-container">
+      <span id="iban-text">{iban}</span>
+      <button id="copy-btn" class="copy-button"> 📋 Copiar IBAN </button>
+    </div>
+
+    <span id="copy-message" class="copy-message">¡Copiado al portapapeles!</span
+    >
+  </div>
+</section>
+
+<script>
+  const copyBtn = document.getElementById("copy-btn");
+  const ibanText = document.getElementById("iban-text")?.textContent || "";
+  const copyMessage = document.getElementById("copy-message");
+
+  copyBtn?.addEventListener("click", async () => {
+    try {
+      // Copia el texto al portapapeles
+      await navigator.clipboard.writeText(ibanText.replace(/\s+/g, "")); // Quita los espacios al copiar
+
+      // Muestra el mensaje de confirmación
+      if (copyMessage) {
+        copyMessage.classList.add("show");
+        setTimeout(() => {
+          copyMessage.classList.remove("show");
+        }, 2500);
+      }
+    } catch (err) {
+      console.error("Error al copiar: ", err);
+    }
+  });
+</script>
+
+<style>
+  .gift-section {
+    padding: 4rem 1rem;
+    display: flex;
+    justify-content: center;
+    background-color: #faf9f6;
+  }
+
+  .gift-card {
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+  }
+
+  .icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    width: 40px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .iban-container {
+    background-color: #f4f4f5;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  #iban-text {
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #222;
+    letter-spacing: 1px;
+  }
+
+  .copy-button {
+    background-color: #111827;
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .copy-button:hover {
+    background-color: #374151;
+  }
+
+  .copy-message {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: #16a34a;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .copy-message.show {
+    opacity: 1;
+  }
+</style>

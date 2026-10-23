@@ -1,0 +1,26 @@
+---
+import WeddingLayout from "../layouts/WeddingLayout.astro";
+import Hero from "../layouts/Hero.astro";
+import Countdown from "../layouts/Countdown.astro";
+import Asistencia from "../layouts/Asistencia.astro";
+import Footer from "../layouts/footer.astro";
+import Regalos from "../layouts/regalos.astro";
+import Sitio from "../layouts/sitio.astro";
+const novio = "Manuel";
+const novia = "Maria";
+const fecha = "09 de abril de 2027";
+---
+
+<WeddingLayout title="Invitación de Boda | Manuel & Maria">
+  <Hero />
+  <Countdown />
+  <Sitio />
+  <Asistencia>
+    <!-- A medida que crees los componentes, los vas añadiendo aquí: -->
+    <!-- <Timeline /> -->
+    <!-- <Gallery /> -->
+    <!-- <RSVP /> -->
+  </Asistencia>
+  <Regalos />
+  <Footer />
+</WeddingLayout>

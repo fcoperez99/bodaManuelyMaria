@@ -1,0 +1,132 @@
+---
+// Puedes ajustar las frases o nombres si lo necesitas
+const novios = "Manuel & María";
+const fecha = "09.04.2027";
+---
+
+<footer class="wedding-footer">
+  <div class="footer-content">
+    <div class="decorative-line">
+      <span class="line"></span>
+      <span class="heart">♥</span>
+      <span class="line"></span>
+    </div>
+
+    <p class="thanks-message">
+      ¡Gracias por acompañarnos en este día tan especial!
+    </p>
+
+    <h3 class="couples-names">{novios}</h3>
+
+    <p class="wedding-date">{fecha}</p>
+
+    <div class="small-detail">
+      <span>#BodaManuelYMaria</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400&display=swap");
+
+  .wedding-footer {
+    background-color: #fdfcf8;
+    border-top: 1px solid #eae3d9;
+    padding: 4rem 1.5rem 3rem;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: #4a4a4a;
+  }
+
+  .footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  /* Línea decorativa con corazón central */
+  .decorative-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 0.5rem;
+  }
+
+  .decorative-line .line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    flex-grow: 1;
+  }
+
+  .decorative-line .heart {
+    color: #c5a059;
+    font-size: 0.9rem;
+  }
+
+  /* Mensaje de agradecimiento */
+  .thanks-message {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #5c554e;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Nombres de los novios */
+  .couples-names {
+    font-family: "Alex Brush", cursive; /* Tipografía caligráfica elegante */
+    font-size: 3.5rem;
+    color: #2c2c2c;
+    margin: 0.2rem 0;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
+  /* Fecha */
+  .wedding-date {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: #8c857b;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  /* Hashtag o detalle final */
+  .small-detail {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #e8dfd8;
+    width: 100%;
+    max-width: 180px;
+  }
+
+  .small-detail span {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    color: #a39c93;
+    text-transform: uppercase;
+  }
+
+  /* Ajustes para móviles */
+  @media (max-width: 480px) {
+    .wedding-footer {
+      padding: 3rem 1rem 2rem;
+    }
+
+    .couples-names {
+      font-size: 2.8rem;
+    }
+
+    .thanks-message {
+      font-size: 1.2rem;
+    }
+  }
+</style>

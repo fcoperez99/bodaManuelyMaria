@@ -1,0 +1,174 @@
+---
+// Pega aquí el enlace público de tu Google Form cuando lo tengas listo
+const googleFormsUrl =
+  "https://docs.google.com/forms/d/e/TU_FORMULARIO_AQUI/viewform";
+---
+
+<section class="rsvp-section">
+  <div class="rsvp-card">
+    <div class="decorative-top">
+      <span class="line"></span>
+      <span class="icon">✉</span>
+      <span class="line"></span>
+    </div>
+
+    <h2>CONFIRMACIÓN DE ASISTENCIA</h2>
+
+    <p class="rsvp-message">
+      Esperamos de corazón que puedas acompañarnos en este día tan bonito y
+      especial para nosotros. ¡Tu presencia es nuestro mejor regalo!
+    </p>
+
+    <p class="rsvp-deadline">
+      Por favor, confirma tu asistencia antes del <strong
+        >15 de Febrero de 2027</strong
+      >
+    </p>
+
+    <div class="button-container">
+      <a
+        href={googleFormsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="confirm-button"
+      >
+        Confirmar Asistencia
+      </a>
+    </div>
+
+    <span class="form-note"
+      >Se abrirá un breve formulario para completar tus datos</span
+    >
+  </div>
+</section>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap");
+
+  .rsvp-section {
+    background-color: #fdfcf8;
+    padding: 3rem 1.5rem 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .rsvp-card {
+    background: #ffffff;
+    border: 1px solid #e8dfd8;
+    border-radius: 20px;
+    padding: 3.5rem 2rem;
+    max-width: 580px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Adorno superior */
+  .decorative-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .decorative-top .line {
+    height: 1px;
+    width: 40px;
+    background-color: #d4af37;
+  }
+
+  .decorative-top .icon {
+    color: #c5a059;
+    font-size: 1.1rem;
+  }
+
+  h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    color: #2c2c2c;
+    margin: 0 0 1.5rem 0;
+    font-weight: 500;
+  }
+
+  .rsvp-message {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    color: #5a544f;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .rsvp-deadline {
+    font-size: 0.85rem;
+    color: #8c857b;
+    letter-spacing: 0.5px;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+  }
+
+  .rsvp-deadline strong {
+    color: #2c2c2c;
+    font-weight: 500;
+  }
+
+  /* Estilos del Botón de Confirmación */
+  .button-container {
+    margin-bottom: 1rem;
+  }
+
+  .confirm-button {
+    display: inline-block;
+    background-color: #2c2c2c;
+    color: #fdfcf8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 1.1rem 2.5rem;
+    border-radius: 50px;
+    border: 1px solid #2c2c2c;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .confirm-button:hover {
+    background-color: #c5a059;
+    border-color: #c5a059;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.25);
+  }
+
+  .form-note {
+    display: block;
+    font-size: 0.75rem;
+    color: #b0a8a0;
+    font-style: italic;
+  }
+
+  /* Responsive para pantallas pequeñas */
+  @media (max-width: 480px) {
+    .rsvp-card {
+      padding: 2.5rem 1.2rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    .rsvp-message {
+      font-size: 1.2rem;
+    }
+
+    .confirm-button {
+      padding: 1rem 1.8rem;
+      width: 74%;
+    }
+  }
+</style>

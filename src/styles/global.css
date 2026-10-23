@@ -1,0 +1,19 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*body {
+  background-image: url("/fondo.jpg");
+  background-repeat: repeat;
+  background-size: 500px;
+}*/
+
+body {
+  background-image: url("fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Mantiene el fondo quieto mientras se hace scroll */
+}
