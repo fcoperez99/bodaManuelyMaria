@@ -1,0 +1,83 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main] # O 'master' si tu rama principal se llama así
+
+  # Permite ejecutar este workflow manualmente desde la pestaña Actions en GitHub
+  workflow_dispatch:
+
+# Configurar permisos del GITHUB_TOKEN para permitir despliegues a GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permitir un único despliegue concurrente
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect package manager
+        id: detect-package-manager
+        run: |
+          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_SOURCE
+            echo "command=install" >> $GITHUB_SOURCE
+            echo "runner=yarn" >> $GITHUB_SOURCE
+            exit 0
+          elif [ -f "${{ github.workspace }}/package-lock.json" ]; then
+            echo "manager=npm" >> $GITHUB_SOURCE
+            echo "command=ci" >> $GITHUB_SOURCE
+            echo "runner=npx --no-install" >> $GITHUB_SOURCE
+            exit 0
+          elif [ -f "${{ github.workspace }}/pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> $GITHUB_SOURCE
+            echo "command=install:frozen" >> $GITHUB_SOURCE
+            echo "runner=pnpm" >> $GITHUB_SOURCE
+            exit 0
+          else
+            echo "Unable to determine package manager"
+            exit 1
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      - name: Build with Astro
+        run: |
+          # Detecta automáticamente si usas npm, pnpm o yarn para compilar
+          npx astro build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
