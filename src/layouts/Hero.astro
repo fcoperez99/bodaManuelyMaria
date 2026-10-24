@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 // Si guardaste tu foto en public/, la referenciamos con /
-const fotoBoda = "/foto-principal.jpg";
+//const fotoBoda = "/foto-principal.jpg";
+const fotoBoda = `${import.meta.env.BASE_URL}/foto-principal.jpg`;
 const novio = "Manuel";
 const novia = "María";
 const fechaCorta = "09 • 04 • 27";
