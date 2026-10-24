@@ -1,7 +1,7 @@
 ---
-// Boda: 9 de Abril de 2027 a las 18:00
-// NOTA: Los meses van de 0 a 11 (Abril = 3)
-const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
+// Boda: 19 de Mayo de 2027 a las 18:00
+// NOTA: Los meses van de 0 a 11 (Mayo = 4)
+const fechaBoda = new Date(2027, 4, 19, 18, 0, 0).getTime();
 ---
 
 <section class="countdown-section">
@@ -35,6 +35,62 @@ const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
           <span id="seconds">00</span>
           <p>Segundos</p>
         </div>
+      </div>
+    </div>
+
+    <!-- MINI CALENDARIO DE MAYO 2027 -->
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <h4>Mayo 2027</h4>
+      </div>
+      <div class="calendar-grid">
+        <span class="day-name">L</span>
+        <span class="day-name">M</span>
+        <span class="day-name">X</span>
+        <span class="day-name">J</span>
+        <span class="day-name">V</span>
+        <span class="day-name">S</span>
+        <span class="day-name">D</span>
+
+        <!-- 1 de mayo de 2027 cae en Sábado (ajustamos espacios vacíos: L, M, X, J, V = 5 días vacíos) -->
+        <span class="empty"></span>
+        <span class="empty"></span>
+        <span class="empty"></span>
+        <span class="empty"></span>
+        <span class="empty"></span>
+
+        <span class="day">1</span>
+        <span class="day">2</span>
+        <span class="day">3</span>
+        <span class="day">4</span>
+        <span class="day">5</span>
+        <span class="day">6</span>
+        <span class="day">7</span>
+        <span class="day">8</span>
+        <span class="day">9</span>
+        <span class="day">10</span>
+        <span class="day">11</span>
+        <span class="day">12</span>
+        <span class="day">13</span>
+        <span class="day">14</span>
+        <span class="day">15</span>
+        <span class="day">16</span>
+        <span class="day">17</span>
+        <span class="day">18</span>
+        <span class="day is-wedding">19</span>
+        <!-- ¡Día de la Boda marcado! -->
+        <span class="day">20</span>
+        <span class="day">21</span>
+        <span class="day">22</span>
+        <span class="day">23</span>
+        <span class="day">24</span>
+        <span class="day">25</span>
+        <span class="day">26</span>
+        <span class="day">27</span>
+        <span class="day">28</span>
+        <span class="day">29</span>
+        <span class="day">30</span>
+        <span class="day">31</span>
       </div>
     </div>
   </div>
@@ -89,7 +145,6 @@ const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
 </script>
 
 <style>
-  /* Importamos una tipografía elegante estilo serif */
   @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap");
 
   .countdown-section {
@@ -111,6 +166,7 @@ const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     position: relative;
+    box-sizing: border-box;
   }
 
   .decorative-icon {
@@ -144,7 +200,6 @@ const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
     gap: 2rem;
   }
 
-  /* Estilos para el bloque destacado de Meses */
   .main-block {
     background: #fdfbf7;
     border: 2px solid #d4af37;
@@ -181,7 +236,6 @@ const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
     font-weight: 500;
   }
 
-  /* Grid secundario para Días, Horas, Minutos y Segundos */
   .secondary-timer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -208,7 +262,62 @@ const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
     margin-top: 0.5rem;
   }
 
-  /* Ajustes Responsive para móviles pequeños */
+  /* ESTILOS DEL MINI CALENDARIO */
+  .calendar-container {
+    margin-top: 2.5rem;
+    border-top: 1px solid #f0eae1;
+    padding-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar-header h4 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: #2c2c2c;
+    margin: 0 0 1rem 0;
+    font-weight: 500;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+
+  .day-name {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #8c857b;
+    padding-bottom: 0.3rem;
+  }
+
+  .day,
+  .empty {
+    font-size: 0.85rem;
+    color: #4a4a4a;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* El círculo dorado elegante para marcar el día 19 de la boda */
+  .day.is-wedding {
+    background-color: #fdfbf7;
+    border: 1.5px solid #d4af37;
+    color: #2c2c2c;
+    border-radius: 50%;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(212, 175, 55, 0.2);
+  }
+
   @media (max-width: 480px) {
     .countdown-card {
       padding: 2rem 1rem;
@@ -222,9 +331,8 @@ const fechaBoda = new Date(2027, 3, 9, 18, 0, 0).getTime();
       font-size: 1.6rem;
     }
 
-    .secondary-timer .time-block p {
-      font-size: 0.65rem;
-      letter-spacing: 0.5px;
+    .calendar-grid {
+      max-width: 240px;
     }
   }
 </style>
